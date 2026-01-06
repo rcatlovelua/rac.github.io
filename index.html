@@ -1,2 +1,244 @@
-# rac.github.io
-**Work in proggress**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rcat's Anti-Cheat (RAC) Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Minimal Dark Style -->
+    <style>
+        :root {
+            --bg: #0e0e11;
+            --bg-soft: #16161c;
+            --text: #e6e6eb;
+            --muted: #9a9aa3;
+            --accent: #6cf2c2;
+            --border: #26262d;
+            --code-bg: #1b1b23;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 48px 24px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, #0e0e11, #0c0c10);
+        }
+
+        header h1 {
+            margin: 0 0 8px 0;
+            font-size: 2.4rem;
+        }
+
+        header p {
+            margin: 0;
+            color: var(--muted);
+            max-width: 720px;
+        }
+
+        main {
+            max-width: 960px;
+            padding: 40px 24px 80px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 56px;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin-top: 24px;
+            margin-bottom: 8px;
+            color: var(--accent);
+        }
+
+        p {
+            color: var(--text);
+            max-width: 800px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        code, pre {
+            font-family: "JetBrains Mono", Consolas, monospace;
+            background: var(--code-bg);
+            color: #dcdce3;
+        }
+
+        pre {
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid var(--border);
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 24px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.75rem;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Rcat's Anti-Cheat (RAC)</h1>
+    <p>
+        Server-side anti-cheat system for Roblox Studio, focused on security, performance,
+        and clean modular architecture.
+    </p>
+    <div style="margin-top:12px;">
+        <span class="badge">Roblox</span>
+        <span class="badge">Lua</span>
+        <span class="badge">Server-Side</span>
+        <span class="badge">Anti-Cheat</span>
+    </div>
+</header>
+
+<main>
+
+    <section>
+        <h2>Overview</h2>
+        <p>
+            Rcat's Anti-Cheat (RAC) is designed to detect and mitigate common exploit techniques
+            used in Roblox games. The system is primarily server-based, ensuring that critical
+            validation and decisions are never trusted to the client.
+        </p>
+    </section>
+
+    <section>
+        <h2>Architecture</h2>
+
+        <h3>Server Script</h3>
+        <p>
+            The server script is the core of RAC. It runs inside
+            <code>ServerScriptService</code> and is responsible for:
+        </p>
+        <ul>
+            <li>Validating player movement and behavior</li>
+            <li>Detecting speed, fly, noclip, and teleport exploits</li>
+            <li>Handling punishment logic (kick, ban, warnings)</li>
+            <li>Managing excluded players</li>
+        </ul>
+
+        <h3>Client Script</h3>
+        <p>
+            The client script exists only to provide limited data to the server and
+            should never contain trusted logic. All client data is verified server-side.
+        </p>
+        <ul>
+            <li>Basic state reporting</li>
+            <li>Anti-tamper signals</li>
+            <li>No authority over detection decisions</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Excluded Players</h2>
+        <p>
+            RAC supports an exclude list that allows specific players to bypass
+            anti-cheat checks. This is useful for developers, testers, or administrators.
+        </p>
+
+        <pre><code>ExcludedPlayers = {
+    "PlayerName1",
+    "PlayerName2"
+}</code></pre>
+
+        <p>
+            Excluded players will not trigger detections or punishments.
+        </p>
+    </section>
+
+    <section>
+        <h2>Configuration</h2>
+        <p>
+            All major settings are stored in a centralized configuration module.
+        </p>
+
+        <pre><code>return {
+    Enabled = true,
+    Debug = true,
+
+    SpeedLimit = 30,
+    FlyCheck = true,
+    TeleportCheck = true,
+
+    KickOnDetect = true,
+    BanOnRepeat = false
+}</code></pre>
+    </section>
+
+    <section>
+        <h2>Obfuscation</h2>
+        <p>
+            RAC includes optional obfuscation support to make reverse engineering
+            and exploit analysis more difficult.
+        </p>
+        <ul>
+            <li>Variable and function name obfuscation</li>
+            <li>Control flow noise</li>
+            <li>String masking</li>
+        </ul>
+        <p>
+            Obfuscation is recommended for production environments.
+        </p>
+    </section>
+
+    <section>
+        <h2>Disclaimer</h2>
+        <p>
+            No anti-cheat system can guarantee complete protection.
+            RAC should always be used alongside proper server-side game design
+            and validation.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    © Rcat — Rcat's Anti-Cheat (RAC)
+</footer>
+
+</body>
+</html>
+```
