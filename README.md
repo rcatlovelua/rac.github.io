@@ -10,9 +10,9 @@ RAC focuses on **security**, **performance**, and **easy integration**, while re
 
  Detection of:
   - Speed Hacks
-  - Fly / NoClip
+  - Fly (SOON) / NoClip
   - Teleport exploits
-  - Common exploit tool behavior
+  - Anti building tools
   - Server-side checks (never trust the client)
   - Player behavior monitoring
   - Fully configurable system
@@ -21,4 +21,6 @@ RAC focuses on **security**, **performance**, and **easy integration**, while re
   - Lightweight & performance-friendly
 
 ---
-*All may be edited this is a firs version of rac*
+## Why server?
+  Clients script can be decomplied by expoliters.
+*All may be edited this is a first version of rac*
