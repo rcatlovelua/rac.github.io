@@ -1,4 +1,8 @@
 # 🛡️ Rcat's Anti-Cheat (RAC)
+> [!CAUTION]
+>
+> ### Depricated
+> RAC is no longer supports
 
 **Rcat's Anti-Cheat (RAC)** is a server-side anti-cheat system for **Roblox Studio**, designed to detect and prevent common exploiting and cheating behaviors in Roblox games.
 
